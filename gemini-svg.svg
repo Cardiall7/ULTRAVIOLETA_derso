@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="48" height="48">
+  <!-- Fundo com cantos arredondados -->
+  <rect width="120" height="120" rx="24" fill="#090314" />
+  
+  <!-- Brilho do escudo (Glow Effect) -->
+  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="3" result="blur" />
+    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+  </filter>
+
+  <g filter="url(#glow)">
+    <!-- Gradiente do Escudo -->
+    <defs>
+      <linearGradient id="uvGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ff007f" />
+        <stop offset="50%" stop-color="#7b2cbf" />
+        <stop offset="100%" stop-color="#00f5d4" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Escudo Principal -->
+    <path d="M 60 18 L 92 32 C 92 68 76 92 60 102 C 44 92 28 68 28 32 Z" fill="#1d0047" stroke="url(#uvGrad)" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Detalhes dos Pontos Neon -->
+    <circle cx="28" cy="32" r="3.5" fill="#ff007f" />
+    <circle cx="92" cy="32" r="3.5" fill="#00f5d4" />
+
+    <!-- Onda UV Central -->
+    <path d="M 38 65 Q 43 55, 49 65 T 60 65 T 71 65 T 82 65" fill="none" stroke="url(#uvGrad)" stroke-width="4" stroke-linecap="round" />
+  </g>
+</svg>
