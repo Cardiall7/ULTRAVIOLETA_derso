@@ -1,0 +1,810 @@
+
+/* ========================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
+======================================== */
+
+:root {
+    --bg: #0b0618;
+    --bg2: #150a2e;
+    --card: rgba(124, 58, 237, .12);
+    --vio: #8b2cf5;
+    --vio2: #b57bff;
+    --pink: #ff4fd8;
+    --cyan: #38e8ff;
+    --txt: #f1e9ff;
+    --mut: #b9a6e0;
+
+    color-scheme: dark;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #0b0618;
+        --txt: #f1e9ff;
+    }
+}
+
+:root[data-theme="dark"] {
+    --bg: #0b0618;
+    --txt: #f1e9ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* ========================================
+   2. CORPO E PLANO DE FUNDO
+======================================== */
+
+body {
+    margin: 0;
+    background: radial-gradient(
+        circle at 20% 0,
+        #2a0f5e 0,
+        var(--bg) 55%
+    ) fixed;
+    color: var(--txt);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+#bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================
+   3. NAVEGAÇÃO
+======================================== */
+
+nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    background: rgba(11, 6, 24, .7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #8b2cf544;
+}
+
+nav a {
+    color: var(--txt);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 99px;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    background: var(--vio);
+    box-shadow: 0 0 18px var(--vio);
+}
+
+/* ========================================
+   4. SEÇÕES E TÍTULOS
+======================================== */
+
+section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 70px 18px;
+}
+
+h1,
+h2 {
+    margin: 0 0 12px;
+    line-height: 1.1;
+}
+
+h2 {
+    font-size: clamp(26px, 5vw, 40px);
+    background: linear-gradient(
+        90deg,
+        var(--vio2),
+        var(--pink),
+        var(--cyan)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ========================================
+   5. SEÇÃO PRINCIPAL - HERO
+======================================== */
+
+.hero {
+    min-height: 92vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    position: relative;
+}
+
+#three {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero div {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 11vw, 110px);
+    letter-spacing: .06em;
+    background: linear-gradient(
+        90deg,
+        #fff,
+        var(--vio2),
+        var(--vio),
+        var(--pink)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 22px #8b2cf5);
+}
+
+.hero p {
+    font-size: clamp(16px, 2.6vw, 22px);
+    color: var(--mut);
+    max-width: 560px;
+    margin: 10px auto 22px;
+}
+
+/* ========================================
+   6. BOTÕES
+======================================== */
+
+.btn {
+    pointer-events: auto;
+    display: inline-block;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 12px 26px;
+    border-radius: 99px;
+    background: linear-gradient(135deg, var(--vio), var(--pink));
+    box-shadow: 0 0 24px #8b2cf588;
+    transition: .25s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 0 40px var(--pink);
+}
+
+.sm {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* ========================================
+   7. CARDS E GRIDS
+======================================== */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+    );
+    gap: 16px;
+    perspective: 900px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid #b57bff44;
+    border-radius: 18px;
+    padding: 20px;
+    transition: transform .2s, box-shadow .3s;
+    transform-style: preserve-3d;
+    backdrop-filter: blur(6px);
+}
+
+.card:hover {
+    box-shadow: 0 0 30px #8b2cf577;
+}
+
+.card .ic {
+    font-size: 36px;
+    display: block;
+    transform: translateZ(40px);
+}
+
+.card h3 {
+    margin: 6px 0;
+    color: var(--vio2);
+}
+
+/* ========================================
+   8. ANIMAÇÕES E EFEITOS
+======================================== */
+
+@keyframes glow {
+    to {
+        filter: drop-shadow(0 0 40px #ff4fd8);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotateX(360deg) rotateY(720deg);
+    }
+}
+
+@keyframes fl {
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
+}
+
+.reveal.on {
+    opacity: 1;
+    transform: none;
+}
+
+/* ========================================
+   9. ABAS E BARRAS DE PROGRESSO
+======================================== */
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+}
+
+.tabs button {
+    flex: 1;
+    min-width: 90px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #b57bff55;
+    background: transparent;
+    color: var(--txt);
+    cursor: pointer;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.tabs button.act {
+    background: var(--vio);
+    box-shadow: 0 0 20px var(--vio);
+}
+
+#spInfo {
+    min-height: 120px;
+}
+
+.bar {
+    height: 16px;
+    border-radius: 9px;
+    background: linear-gradient(
+        90deg,
+        #ff4fd8,
+        #8b2cf5,
+        #38e8ff
+    );
+    position: relative;
+    margin: 14px 0;
+}
+
+.bar i {
+    position: absolute;
+    top: -6px;
+    width: 10px;
+    height: 28px;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 0 14px #fff;
+    transition: left .5s;
+}
+
+/* ========================================
+   10. CUBO 3D
+======================================== */
+
+.cubeWrap {
+    perspective: 700px;
+    height: 150px;
+    display: grid;
+    place-items: center;
+}
+
+.cube {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin 9s linear infinite;
+}
+
+.cube b {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 34px;
+    border: 2px solid var(--vio2);
+    background: #8b2cf533;
+    box-shadow: inset 0 0 20px #b57bff88;
+}
+
+.cube b:nth-child(1) {
+    transform: translateZ(40px);
+}
+
+.cube b:nth-child(2) {
+    transform: rotateY(180deg) translateZ(40px);
+}
+
+.cube b:nth-child(3) {
+    transform: rotateY(90deg) translateZ(40px);
+}
+
+.cube b:nth-child(4) {
+    transform: rotateY(-90deg) translateZ(40px);
+}
+
+.cube b:nth-child(5) {
+    transform: rotateX(90deg) translateZ(40px);
+}
+
+.cube b:nth-child(6) {
+    transform: rotateX(-90deg) translateZ(40px);
+}
+
+/* ========================================
+   11. CAIXAS E CANVAS
+======================================== */
+
+.box {
+    background: rgba(20, 8, 45, .7);
+    border: 1px solid #b57bff55;
+    border-radius: 20px;
+    padding: 14px;
+    box-shadow: 0 0 40px #8b2cf544;
+}
+
+canvas.v {
+    width: 100%;
+    display: block;
+    border-radius: 14px;
+    background: #000;
+    touch-action: none;
+}
+
+/* ========================================
+   12. CONTROLES E INTERFACE DO JOGO
+======================================== */
+
+.ctl {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.prog {
+    flex: 1;
+    min-width: 120px;
+    height: 10px;
+    border-radius: 9px;
+    background: #ffffff22;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.prog i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--vio), var(--pink));
+}
+
+.hud {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.sh {
+    height: 14px;
+    border-radius: 9px;
+    background: #ffffff1f;
+    overflow: hidden;
+    flex: 1;
+    min-width: 120px;
+    align-self: center;
+}
+
+.sh i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--vio2));
+    transition: width .2s;
+}
+
+#gwrap {
+    position: relative;
+    max-width: 420px;
+    margin: auto;
+}
+
+#ov {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(11, 6, 24, .86);
+    border-radius: 14px;
+    padding: 16px;
+}
+
+/* ========================================
+   13. CHAT
+======================================== */
+
+#chat {
+    height: 300px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 6px;
+}
+
+.m {
+    max-width: 85%;
+    padding: 9px 13px;
+    border-radius: 14px;
+    white-space: pre-wrap;
+}
+
+.m.u {
+    align-self: flex-end;
+    background: var(--vio);
+}
+
+.m.a {
+    background: #ffffff14;
+    border: 1px solid #b57bff44;
+    max-width: none;
+}
+
+.ln {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    align-self: flex-start;
+    max-width: 92%;
+}
+
+.av {
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--vio), var(--pink)) center/cover;
+    box-shadow: 0 0 14px var(--vio2);
+    border: 2px solid var(--vio2);
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.row input {
+    flex: 1;
+    min-width: 0;
+    padding: 11px 14px;
+    border-radius: 99px;
+    border: 1px solid #b57bff66;
+    background: #0b0618;
+    color: var(--txt);
+    font-size: 16px;
+}
+
+.chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.chips button {
+    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 99px;
+    border: 1px solid #b57bff66;
+    background: transparent;
+    color: var(--mut);
+    cursor: pointer;
+}
+
+/* ========================================
+   14. RODAPÉ E NOMES
+======================================== */
+
+footer {
+    text-align: center;
+    padding: 60px 18px 50px;
+    border-top: 1px solid #8b2cf544;
+    background: linear-gradient(transparent, #2a0f5e66);
+}
+
+.names {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 18px 0;
+}
+
+.names span {
+    padding: 14px 28px;
+    border-radius: 16px;
+    font-size: 22px;
+    font-weight: 800;
+    background: var(--card);
+    border: 1px solid var(--vio2);
+    box-shadow: 0 0 22px #8b2cf577;
+    animation: fl 3s ease-in-out infinite;
+}
+
+.names span:nth-child(2) {
+    animation-delay: .4s;
+}
+
+.names span:nth-child(3) {
+    animation-delay: .8s;
+}
+
+/* ========================================
+   15. CABEÇALHO E AVATAR DA DERSA
+======================================== */
+
+.ia-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.ia-header > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.ia-header h2 {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.ia-header p {
+    color: var(--mut);
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.dersa-header-img {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #9d4edd;
+    box-shadow: 0 0 15px rgba(157, 78, 221, .6);
+}
+
+/* ========================================
+   16. MENSAGENS DO CHAT DA DERSA
+======================================== */
+
+.msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    max-width: 100%;
+}
+
+.msg.ia {
+    align-self: flex-start;
+}
+
+.chat-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #9d4edd;
+    box-shadow: 0 0 8px rgba(157, 78, 221, .5);
+    flex-shrink: 0;
+}
+
+.msg-bubble {
+    max-width: calc(100% - 48px);
+    padding: 9px 15px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid #b57bff44;
+    color: var(--txt);
+    overflow-wrap: anywhere;
+}
+
+/* ========================================
+   17. EQUIPE E FOTOS DOS INTEGRANTES
+======================================== */
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 160px;
+}
+
+.photo-wrapper {
+    width: 140px;
+    height: 190px;
+    border-radius: 14px;
+    padding: 3px;
+    background: linear-gradient(
+        135deg,
+        #7b2cbf,
+        #f72585,
+        #00f5d4
+    );
+    box-shadow: 0 0 15px rgba(123, 44, 191, .5);
+    margin-bottom: 10px;
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+    object-fit: cover;
+    display: block;
+    background-color: #1a0033;
+}
+
+.photo-wrapper {
+    width: 120px;
+    height: 165px;
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background-color: #1a0033;
+}
+
+.team-card h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin: 5px 0 0;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* ========================================
+   18. RESPONSIVIDADE PARA CELULARES
+======================================== */
+
+@media (max-width: 600px) {
+
+    .ia-header {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .dersa-header-img {
+        width: 58px;
+        height: 58px;
+        min-width: 58px;
+    }
+
+    .ia-header h2 {
+        font-size: clamp(23px, 6vw, 30px);
+    }
+
+    .ia-header p {
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+    .team-grid {
+        gap: 20px 12px;
+    }
+
+    .team-card {
+        width: calc(50% - 12px);
+        max-width: 140px;
+    }
+
+    .photo-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+
+    .row {
+        align-items: stretch;
+    }
+
+    .row input {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   19. ACESSIBILIDADE
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+    }
+}
