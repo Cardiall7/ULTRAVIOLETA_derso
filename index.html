@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ULTRAVIOLETA – A luz que você não vê</title>
-<!-- Logo / Ícone na aba do navegador -->
 <link rel="icon" type="image/svg+xml" href="gemini-svg.svg">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="extra.css">
 </head>
 <body>
 <canvas id="bg"></canvas>
-<nav><a href="#inicio">Início</a><a href="#oque">O que é</a><a href="#espectro">Tipos</a><a href="#video">Vídeo</a><a href="#jogo">Jogo</a><a href="#ia">IA</a><a href="#equipe">Equipe</a></nav>
-
+<nav><a href="#inicio">Início</a><a href="#oque">O que é</a><a href="#espectro">Tipos</a><a href="#jogo">Jogo</a><a href="#ia">IA</a><a href="#equipe">Equipe</a></nav>
+ 
 <section class="hero" id="inicio">
 <canvas id="three"></canvas>
 <div><h1>ULTRAVIOLETA</h1></div>
 </section>
-
+ 
 <section id="oque">
 <h2 class="reveal">O que é ultravioleta?</h2>
 <p class="reveal">A radiação ultravioleta (UV) é uma luz com comprimento de onda entre cerca de 10 e 400 nanômetros: mais curta que a luz violeta e, por isso, invisível para nós. Foi descoberta em 1801 pelo físico alemão Johann Ritter. O Sol é a nossa principal fonte, mas lâmpadas especiais, soldas e luzes negras também emitem UV.</p>
@@ -28,7 +28,7 @@
 </div>
 <div class="cubeWrap"><div class="cube"><b>☀️</b><b>🟣</b><b>🧴</b><b>🕶️</b><b>🧬</b><b>⚡</b></div></div>
 </section>
-
+ 
 <section id="espectro">
 <h2 class="reveal">UVA, UVB e UVC</h2>
 <div class="box reveal">
@@ -44,45 +44,27 @@
 <div class="card"><span class="ic">🕙</span><h3>Evite 10h–16h</h3><p>É quando o índice UV costuma ser mais alto.</p></div>
 </div>
 </section>
-
-<section id="video">
-<h2 class="reveal">Vídeo explicativo</h2>
-<div class="box reveal">
-<canvas id="vid" class="v" width="800" height="450"></canvas>
-<div class="ctl"><button class="btn sm" id="vp">▶ Assistir</button><div class="prog" id="vb"><i id="vi"></i></div><button class="btn sm" id="vs" style="background:#ffffff22;box-shadow:none">🔊 Narração: ligada</button></div>
-</div>
-</section>
-
+ 
 <section id="jogo">
 <h2 class="reveal">Jogo: Escudo Anti-UV</h2>
 <p class="reveal">Mova-se e desvie dos raios UV. Cada raio tira energia do seu escudo; pegue 🧴 🕶️ 🧢 ☂️ para recuperá-lo. Sobreviva 45 segundos!</p>
 <div class="box reveal" id="gwrap">
-<div class="hud"><span>⏱ <b id="gt">45</b>s</span><div class="sh"><i id="gs"></i></div><span>⭐ <b id="gp">0</b></span></div>
-<canvas id="game" class="v" width="400" height="520"></canvas>
-<div id="ov"><h3 id="ot" style="margin:0;font-size:24px">Pronto para se proteger?</h3><p id="om" style="margin:0;color:var(--mut)">Arraste, use o mouse ou as setas ← →</p><button class="btn" data-m="e">😊 Modo Fácil</button><button class="btn" data-m="h" style="background:linear-gradient(135deg,#ff2a6d,#8b2cf5)">🔥 Modo Difícil</button></div>
+<div class="hud"><span>⏱ <b id="gt">45</b>s</span><div class="sh"><i id="gs"></i></div><span>⭐ <b id="gp">0</b></span><button class="btn sm" id="fs" title="Tela cheia">⛶ Tela cheia</button></div>
+<canvas id="game" class="v" width="720" height="620"></canvas>
+<div id="ov"><h3 id="ot" style="margin:0;font-size:28px">Pronto para se proteger?</h3><p id="om" style="margin:0;color:var(--mut)">Arraste, use o mouse ou as setas ← →</p><button class="btn" data-m="e">😊 Modo Fácil</button><button class="btn" data-m="h" style="background:linear-gradient(135deg,#ff2a6d,#8b2cf5)">🔥 Modo Difícil</button></div>
 </div>
 </section>
-
+ 
 <section id="ia">
 <div class="msg ia">
-    <img
-        src="dersa.png"
-        class="chat-avatar"
-        alt="Dersa"
-    >
-
-    <div class="msg-bubble">
-        <p class="reveal" style="margin:5px 0 0 0;">Pergunte qualquer coisa sobre radiação ultravioleta. O Dersa só responde sobre esse assunto.</p>
-    </div>
-</div>
-
-<div class="box reveal">
-  <div id="chat">
-    <div class="msg ia">
-      <img src="dersa.png" alt="Dersa" class="chat-avatar">
-      <div class="msg-bubble">Oi! Eu sou a Dersa 💜 Tire suas dúvidas sobre ultravioleta!</div>
-    </div>
+  <img src="dersa.png" class="chat-avatar" alt="Dersa">
+  <div class="msg-bubble">
+    <p class="reveal" style="margin:5px 0 0 0;">Pergunte qualquer coisa sobre radiação ultravioleta. O Dersa só responde sobre esse assunto.</p>
   </div>
+</div>
+ 
+<div class="box reveal">
+  <div id="chat"></div>
   <div class="chips">
     <button>O que é UVC?</button>
     <button>Por que o céu bloqueia UV?</button>
@@ -95,29 +77,42 @@
   </div>
 </div>
 </section>
-
+ 
 <footer id="equipe">
-<h2>Feito por</h2>
-<div class="team-grid">
-  <div class="team-card">
-    <div class="photo-wrapper"><img src="cad.png" alt="Davi Cardeal" class="team-photo"></div>
+<h2 class="reveal">Feito por</h2>
+<p class="tm-sub reveal">Clique na foto para visitar o GitHub</p>
+<div class="tm-grid reveal">
+  <div class="tm-card">
+    <a class="tm-photo" href="https://github.com/Cardiall7" target="_blank" rel="noopener" aria-label="GitHub de Davi Cardeal">
+      <span class="tm-img"><img src="cad.png" alt="Davi Cardeal"></span>
+      <span class="tm-badge">GitHub ↗</span>
+    </a>
     <h3>Davi Cardeal</h3>
   </div>
-  <div class="team-card">
-    <div class="photo-wrapper"><img src="masseto.png"Enzo Macedo" class="team-photo"></div>
+  <div class="tm-card">
+    <a class="tm-photo" href="https://github.com/enzo-macedo" target="_blank" rel="noopener" aria-label="GitHub de Enzo Macedo">
+      <span class="tm-img"><img src="masseto.png" alt="Enzo Macedo"></span>
+      <span class="tm-badge">GitHub ↗</span>
+    </a>
     <h3>Enzo Macedo</h3>
   </div>
-  <div class="team-card">
-    <div class="photo-wrapper"><img src="amarelo.png"Thiago Amaral" class="team-photo"></div>
+  <div class="tm-card">
+    <a class="tm-photo" href="https://github.com/thiagodelimao24-bot" target="_blank" rel="noopener" aria-label="GitHub de Thiago Amaral">
+      <span class="tm-img"><img src="amarelo.png" alt="Thiago Amaral"></span>
+      <span class="tm-badge">GitHub ↗</span>
+    </a>
     <h3>Thiago Amaral</h3>
   </div>
-  <div class="team-card">
-    <div class="photo-wrapper"><img src="testa.png"Mirella Perez" class="team-photo"></div>
+  <div class="tm-card">
+    <a class="tm-photo" href="https://github.com/camilottiperezmirella" target="_blank" rel="noopener" aria-label="GitHub de Mirella Perez">
+      <span class="tm-img"><img src="testa.png" alt="Mirella Perez"></span>
+      <span class="tm-badge">GitHub ↗</span>
+    </a>
     <h3>Mirella Perez</h3>
   </div>
 </div>
 </footer>
-
+ 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="script.js"></script>
 </body>

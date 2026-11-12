@@ -1,0 +1,191 @@
+#gwrap {
+    max-width: 860px;
+}
+ 
+#gwrap canvas.v {
+    aspect-ratio: 720 / 620;
+    border: 1px solid #b57bff66;
+    box-shadow: 0 0 40px #8b2cf544;
+}
+ 
+#gwrap:fullscreen {
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg);
+    border-radius: 0;
+}
+ 
+#gwrap:fullscreen .hud {
+    width: min(100%, 900px);
+}
+ 
+#gwrap:fullscreen canvas.v {
+    width: min(100%, calc((100vh - 110px) * 720 / 620));
+    height: auto;
+}
+ 
+footer .tm-sub {
+    color: var(--mut);
+    margin: 0;
+}
+ 
+.tm-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 38px;
+    margin-top: 34px;
+}
+ 
+.tm-card {
+    width: 170px;
+    text-align: center;
+    transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform .15s ease-out;
+}
+ 
+.tm-grid.on .tm-card {
+    animation: tmRise .8s backwards;
+}
+ 
+.tm-grid.on .tm-card:nth-child(2) { animation-delay: .12s; }
+.tm-grid.on .tm-card:nth-child(3) { animation-delay: .24s; }
+.tm-grid.on .tm-card:nth-child(4) { animation-delay: .36s; }
+ 
+@keyframes tmRise {
+    from {
+        opacity: 0;
+        transform: translateY(60px) scale(.7);
+    }
+}
+ 
+@keyframes tmSpin {
+    to { transform: rotate(360deg); }
+}
+ 
+@keyframes tmPulse {
+    50% { opacity: .9; }
+}
+ 
+.tm-photo {
+    position: relative;
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 14px;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    isolation: isolate;
+    animation: fl 4s ease-in-out infinite;
+}
+ 
+.tm-card:nth-child(2) .tm-photo { animation-delay: .5s; }
+.tm-card:nth-child(3) .tm-photo { animation-delay: 1s; }
+.tm-card:nth-child(4) .tm-photo { animation-delay: 1.5s; }
+ 
+.tm-photo::before,
+.tm-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(#8b2cf5, #ff4fd8, #38e8ff, #8b2cf5);
+    animation: tmSpin 4s linear infinite;
+    z-index: -1;
+}
+ 
+.tm-photo::after {
+    filter: blur(16px);
+    opacity: .55;
+    z-index: -2;
+    animation: tmSpin 4s linear infinite, tmPulse 2.5s ease-in-out infinite;
+}
+ 
+.tm-img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #1a0033;
+}
+ 
+.tm-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s;
+}
+ 
+.tm-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .45) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform .7s;
+}
+ 
+.tm-photo:hover .tm-img img,
+.tm-photo:focus-visible .tm-img img {
+    transform: scale(1.12);
+}
+ 
+.tm-photo:hover .tm-img::after,
+.tm-photo:focus-visible .tm-img::after {
+    transform: translateX(120%);
+}
+ 
+.tm-badge {
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translate(-50%, 12px);
+    opacity: 0;
+    padding: 4px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    background: linear-gradient(135deg, var(--vio), var(--pink));
+    box-shadow: 0 0 16px var(--pink);
+    transition: .3s;
+}
+ 
+.tm-photo:hover .tm-badge,
+.tm-photo:focus-visible .tm-badge {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+ 
+.tm-card h3 {
+    margin: 6px 0 0;
+    font-size: 1.05rem;
+    background: linear-gradient(90deg, #fff, var(--vio2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+ 
+.tm-card small {
+    color: var(--mut);
+    letter-spacing: .08em;
+}
+ 
+.tm-end {
+    margin-top: 40px;
+    color: var(--mut);
+}
+ 
+@media (max-width: 600px) {
+    .tm-grid { gap: 26px 8px; }
+    .tm-card { width: 46%; }
+    .tm-photo { width: 120px; height: 120px; }
+}
